@@ -4,7 +4,8 @@ import {
   Headphones, 
   Brain,
   Scale,
-  Home
+  Home,
+  FileText
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -26,6 +27,7 @@ const menuItems = [
   { title: "Plataforma IA", url: "/plataforma-ia", icon: Brain },
   { title: "Robôs Jurídicos", url: "/robos-juridicos", icon: Bot },
   { title: "Guia de Peças", url: "/guia-pecas", icon: BookOpen },
+  { title: "Modelos de Peças e Contratos Jurídicos", url: "/modelos-contratos", icon: FileText },
   { title: "Suporte", url: "/suporte", icon: Headphones },
 ];
 

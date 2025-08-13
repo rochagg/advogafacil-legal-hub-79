@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import PlataformaIA from "./pages/PlataformaIA";
 import RobosJuridicos from "./pages/RobosJuridicos";
 import GuiaPecas from "./pages/GuiaPecas";
+import ModelosContratos from "./pages/ModelosContratos";
 import Suporte from "./pages/Suporte";
 import NotFound from "./pages/NotFound";
 
@@ -25,6 +26,7 @@ const App = () => (
             <Route path="/plataforma-ia" element={<PlataformaIA />} />
             <Route path="/robos-juridicos" element={<RobosJuridicos />} />
             <Route path="/guia-pecas" element={<GuiaPecas />} />
+            <Route path="/modelos-contratos" element={<ModelosContratos />} />
             <Route path="/suporte" element={<Suporte />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
