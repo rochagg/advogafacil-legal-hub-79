@@ -30,11 +30,10 @@ const Index = () => {
     },
     {
       icon: FolderOpen,
-      title: "Pack de Modelos",
+      title: "Modelos de Peças e Contratos Jurídicos",
       description: "+100k modelos de peças jurídicas, teses e contratos",
-      path: "https://drive.google.com/drive/folders/1xII4tcgQpHQie3l9ox8WO6WK4l9LYmzi?usp=sharing",
-      color: "bg-red-500",
-      external: true
+      path: "/modelos-contratos",
+      color: "bg-red-500"
     },
     {
       icon: Headphones,
@@ -86,13 +85,7 @@ const Index = () => {
               <Card 
                 key={index} 
                 className="shadow-card-legal hover:shadow-legal transition-all duration-300 cursor-pointer group border-border/50"
-                onClick={() => {
-                  if (feature.external) {
-                    window.open(feature.path, '_blank');
-                  } else {
-                    navigate(feature.path);
-                  }
-                }}
+                onClick={() => navigate(feature.path)}
               >
                 <CardHeader className="text-center pb-4">
                   <div className={`w-12 h-12 ${feature.color} rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300`}>
