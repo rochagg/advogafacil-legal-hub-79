@@ -5,9 +5,13 @@ import {
   Brain,
   Scale,
   Home,
-  FileText
+  FileText,
+  User,
+  LogOut
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { Button } from "@/components/ui/button";
 
 import {
   Sidebar,
@@ -19,6 +23,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarHeader,
+  SidebarFooter,
   useSidebar,
 } from "@/components/ui/sidebar";
 
@@ -33,6 +38,7 @@ const menuItems = [
 
 export function AppSidebar() {
   const { state } = useSidebar();
+  const { user, signOut } = useAuth();
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -80,6 +86,35 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
+      {user && (
+        <SidebarFooter className="border-t border-border">
+          <SidebarGroup>
+            <SidebarGroupContent>
+              <div className="px-3 py-2">
+                {state !== "collapsed" && (
+                  <div className="flex items-center gap-2 mb-2">
+                    <User className="w-4 h-4 text-muted-foreground" />
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium truncate">{user.email}</p>
+                      <p className="text-xs text-muted-foreground">Usuário conectado</p>
+                    </div>
+                  </div>
+                )}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={signOut}
+                  className="w-full justify-start gap-2 text-muted-foreground hover:text-foreground"
+                >
+                  <LogOut className="w-4 h-4" />
+                  {state !== "collapsed" && <span>Sair</span>}
+                </Button>
+              </div>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarFooter>
+      )}
     </Sidebar>
   );
 }

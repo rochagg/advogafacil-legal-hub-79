@@ -4,7 +4,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "@/components/Layout";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 import Index from "./pages/Index";
+import Auth from "./pages/Auth";
 import PlataformaIA from "./pages/PlataformaIA";
 import RobosJuridicos from "./pages/RobosJuridicos";
 import GuiaPecas from "./pages/GuiaPecas";
@@ -16,24 +19,64 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Layout>
+    <AuthProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/plataforma-ia" element={<PlataformaIA />} />
-            <Route path="/robos-juridicos" element={<RobosJuridicos />} />
-            <Route path="/guia-pecas" element={<GuiaPecas />} />
-            <Route path="/modelos-contratos" element={<ModelosContratos />} />
-            <Route path="/suporte" element={<Suporte />} />
+            {/* Public routes */}
+            <Route path="/auth" element={<Auth />} />
+            
+            {/* Protected routes */}
+            <Route path="/" element={
+              <ProtectedRoute>
+                <Layout>
+                  <Index />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            <Route path="/plataforma-ia" element={
+              <ProtectedRoute>
+                <Layout>
+                  <PlataformaIA />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            <Route path="/robos-juridicos" element={
+              <ProtectedRoute>
+                <Layout>
+                  <RobosJuridicos />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            <Route path="/guia-pecas" element={
+              <ProtectedRoute>
+                <Layout>
+                  <GuiaPecas />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            <Route path="/modelos-contratos" element={
+              <ProtectedRoute>
+                <Layout>
+                  <ModelosContratos />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            <Route path="/suporte" element={
+              <ProtectedRoute>
+                <Layout>
+                  <Suporte />
+                </Layout>
+              </ProtectedRoute>
+            } />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </Layout>
-      </BrowserRouter>
-    </TooltipProvider>
+        </BrowserRouter>
+      </TooltipProvider>
+    </AuthProvider>
   </QueryClientProvider>
 );
 
