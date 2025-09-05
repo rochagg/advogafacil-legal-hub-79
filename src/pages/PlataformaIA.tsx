@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Brain, Copy, ExternalLink, Shield } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Brain, Copy, ExternalLink, Shield, AlertTriangle } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
 const PlataformaIA = () => {
@@ -36,6 +37,14 @@ const PlataformaIA = () => {
             </div>
           </div>
         </div>
+
+        <Alert className="mb-6 border-orange-200 bg-orange-50 dark:border-orange-800 dark:bg-orange-950">
+          <AlertTriangle className="h-4 w-4 text-orange-600 dark:text-orange-400" />
+          <AlertTitle className="text-orange-800 dark:text-orange-200">Atenção - Senha Atualizada Regularmente</AlertTitle>
+          <AlertDescription className="text-orange-700 dark:text-orange-300">
+            <strong>A senha da plataforma É ALTERADA A CADA 5 DIAS!</strong> Certifique-se de sempre usar as credenciais mais atualizadas disponíveis nesta página.
+          </AlertDescription>
+        </Alert>
 
         <div className="grid gap-6">
           <Card className="shadow-card-legal">
