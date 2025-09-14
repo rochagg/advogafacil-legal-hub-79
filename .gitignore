@@ -25,5 +25,4 @@ dist-ssr
 
 .env
 .next
-node_modules
 .vercel
