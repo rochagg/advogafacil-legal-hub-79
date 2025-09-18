@@ -52,7 +52,6 @@ export class ChatHistoryService {
    */
   static async saveMessage(userId: string, role: 'user' | 'assistant', content: string): Promise<MessageRecord> {
     try {
-      // @ts-expect-error - tabela user_messages será criada via migração SQL
       const { data, error } = await supabase
         .from('user_messages')
         .insert({
@@ -128,7 +127,7 @@ export class ChatHistoryService {
   static async clearUserHistory(userId: string): Promise<void> {
     try {
       const { error } = await supabase
-        .from('user_messages' as any)
+        .from('user_messages')
         .delete()
         .eq('user_id', userId);
 
@@ -149,7 +148,7 @@ export class ChatHistoryService {
   static async checkTableExists(): Promise<boolean> {
     try {
       const { error } = await supabase
-        .from('user_messages' as any)
+        .from('user_messages')
         .select('id')
         .limit(1);
 
